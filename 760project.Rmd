@@ -1,0 +1,101 @@
+```{r}
+library(tensorflow)
+library(keras)
+```
+
+```{r}
+#data_raw <- read.csv("Reviews.csv") #read the data
+```
+数据预处理
+```{r}
+data_raw_subset <- data_raw[1:20000,]
+data <- data_raw_subset[, c("Summary", "Text", "Score")]#retain the summary, comment and score
+data_size = dim(data)[1]
+train_size = floor(data_size * 0.6)
+test_size = floor(data_size * 0.2)
+train = data[1:train_size,]
+test = data[(train_size + 1):(train_size + test_size),]
+validation = data[(train_size + test_size):data_size,]
+```
+
+运行以下代码块说明所有text文本中共有133039个不同的词。大部分词出现词数较少，暗示我们训练时可以用最高频的20000到40000个词。
+```{r}
+#u = text_tokenizer()
+#fit_text_tokenizer(u, data_raw$Text)
+#temp = texts_to_sequences(u, data_raw$Text)
+#temp = unlist(temp)
+#print(max(temp))  #输出133039
+```
+运行以下代码块中的代码，发现词数最多的评论有3507个词，从histogram发现大部分评论具有的词数较少，而百分之九十七点五的评论的词数在291以下。我们在训练时可以截取评论的前三百个词。
+```{r}
+#u = text_tokenizer()
+#fit_text_tokenizer(u, data_raw$Text)
+#temp = texts_to_sequences(u, data_raw$Text)
+#temp2 = lapply(temp, FUN = length)
+#temp2 = unlist(temp2)
+#hist(temp2,breaks = 100)
+#print(max(temp2))
+#quantile(temp2, prob = 0.975)
+```
+
+preprocess the data.
+```{r}
+u = text_tokenizer(num_words = 30000)
+fit_text_tokenizer(u, data$Text)
+
+
+x_train = texts_to_sequences(u, train$Text)
+y_train = train$Score
+
+x_test = texts_to_sequences(u, test$Text)
+y_test = test$Score
+
+x_validation = texts_to_sequences(u, validation$Text)
+y_validation = validation$Score
+
+to_star_matrix = function(y) 
+{
+  if(is.matrix(y)) {
+    return(y)
+  }
+  l = length(y)
+  s = matrix(0, nrow = l, ncol = 5)
+  for(i in 1:l) {
+    s[i, y[i]] = 1
+  }
+  return(s)
+}
+
+x_train = pad_sequences(x_train, 300)
+x_test = pad_sequences(x_test, 300)
+x_validation = pad_sequences(x_validation, 300)
+
+y_train = to_star_matrix(y_train)
+y_test = to_star_matrix(y_test)
+y_validation = to_star_matrix(y_validation)
+```
+
+
+fit the neural network
+```{r}
+model <- keras_model_sequential()
+model %>%
+  layer_embedding(input_dim = 30000, output_dim = 128) %>%
+  layer_lstm(units = 64, dropout = 0.2, recurrent_dropout = 0.2, return_sequences = TRUE) %>% 
+  layer_lstm(units = 64, dropout = 0.2, recurrent_dropout = 0.2) %>%
+  layer_dense(units = 5, activation = 'sigmoid')
+
+model %>% compile(
+  loss = 'mse',
+  optimizer = 'adam',
+  metrics = c('accuracy')
+)
+
+model %>% keras::fit(
+  x_train, y_train,
+  epochs = 5,
+  batch_size = 500,
+  validation_data = list(x_test, y_test)
+)
+
+```
