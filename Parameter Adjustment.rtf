@@ -1,0 +1,65 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls1\ilvl0
+\f0\fs24 \cf0 ##### 
+\f1 \'b5\'f7\'b2\'ce
+\f0  
+\f1 #####
+\f0 \
+\
+100k data points\
+\
+max_feature
+\f1 \'a3\'ba
+\f0  
+\f1 \'d1\'a1\'d7\'ee\'b8\'df\'c6\'b5\'b5\'c4
+\f0 4w
+\f1 \'b8\'f6\'b4\'ca\'d7\'f6one hot
+\f0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+max_len 
+\f1 \'a3\'ba
+\f0  
+\f1 \'d4\'da
+\f0 300
+\f1 \'b8\'f6\'b4\'ca\'b4\'a6cut
+\f0 \
+\
+batch_size = 1000 (GPU)\
+\
+Embedding
+\f1 \'d6\'d0 
+\f0 output_dim = 128, 256, 384\
+\
+LSTM
+\f1 \'d6\'d0 units
+\f0  = 128, 256 \
+LSTM # of layers: 1/2\
+\
+Dense
+\f1 \'d6\'d0 
+\f0 activation = sigmoid\
+\
+epoch = 5, 15\
+\
+Compile
+\f1 \'d6\'d0\'a3\'ba
+\f0  loss = \'91binary_crossentropy\'92, \'91mse\'92\
+		optimizer = \'91adam\'92, \'91rmsprop\'92\
+		metrics = [\'91accuracy\'92]\
+\
+\
+5 fold cross validation, using 10w dataset\
+\
+\
+\
+\
+\
+\
+}
