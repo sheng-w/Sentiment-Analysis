@@ -104,7 +104,7 @@ some abstract here
 
 \section{Introduction}
 
-Sentiment analysis is an automated process of understanding opinions from natural language. Nowadays countless reviews are available on Internet, but almost all of them are unstructured data, making direct analysis difficult and time-consuming. Sentiment analysis can help address this issue by quantifying the information in the unstructured data, thus the polarity hidden behind the texts can be extracted for further analysis. 
+Sentiment analysis is an automated process of understanding opinions from natural language. Nowadays countless reviews are available on internet, but almost all of them are unstructured data, making direct analysis difficult and time-consuming. Sentiment analysis can help address this issue by quantifying the information in the unstructured data, thus the polarity hidden behind the texts can be extracted for further analysis. 
 
 Recently sentiment analysis has gained much popularity recently and has been used to resolve many practical issues, such as marketing analysis, customer service, etc. In this report, we apply sentiment analysis on Amazon fine food review dataset from Stanford Network Analysis Project (SNAP) which contains 568,454 reviews from more than 200,000 users to study customer behavior and predict the ratings. There are many methods to implement sentiment analysis when our goal is to predict the level of polarity of opinions (thus can be viewed as a classification problem), such as Logistic Regression, Support Vector Machine, Neural Network.
 
@@ -113,8 +113,43 @@ among which we chose RNN....   since ....
 
 \section{Data Cleaning}
 
+table example:
 
-\section{Model}
+\begin{table}[t]
+\caption{LaTeX style packages that must not be used.}\smallskip
+\centering
+\resizebox{.95\columnwidth}{!}{
+\smallskip\begin{tabular}{l|l|l|l}
+authblk & babel & caption & cjk\\
+dvips & epsf & epsfig & euler\\
+float & fullpage & geometry & graphics\\
+hyperref & layout & linespread & lmodern\\
+maltepaper & natbib & navigator & pdfcomment\\
+psfig & pstricks & t1enc & titlesec\\
+tocbind & ulem\\
+\end{tabular}
+}
+\label{table1}
+\end{table}
+
+figure example:
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\columnwidth]{pics//plot_t_len.pdf} % Reduce the figure size so that it is slightly narrower than the column. Don't use precise values for figure width.This setup will avoid overfull boxes. 
+\caption{Using the trim and clip commands produces fragile layers that can result in disasters (like this one from an actual paper) when the color space is corrected or the PDF combined with others for the final proceedings. Crop your figures properly in a graphics program -- not in LaTeX}
+\label{fig1}
+\end{figure}
+
+
+
+\section{Data Analysis}
+
+\subsection{Model}
+
+\subsection{Empirical Evaluation}
+
+\subsection{Discussion}
 
 
 \section{References}
