@@ -12,6 +12,7 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.text import text_to_word_sequence
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.models import Model
+from tensorflow.keras.optimizers import Adam
 from tensorflow.keras import backend as K
 from sklearn.model_selection import StratifiedKFold
 from sklearn.model_selection import KFold
@@ -23,9 +24,10 @@ def text_model(t_max_len, t_max_features):
                      input_length=t_max_len)(text_input)
     text_lstm_sub = LSTM(64, dropout = 0.2, recurrent_dropout = 0.2, return_sequences=True)(text_embedding)
     text_lstm = LSTM(64, dropout = 0.2, recurrent_dropout = 0.2)(text_lstm_sub)
-    text_output = Dense(5, activation='sigmoid', name='text_output')(text_lstm)
+    text_output = Dense(4, activation='sigmoid', name='text_output')(text_lstm)
     model = Model(inputs=[text_input], outputs=[text_output]) 
-    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics = ['accuracy']) 
+    #adam = Adam(lr=0.01)
+    model.compile(optimizer="adam", loss='binary_crossentropy', metrics = ['accuracy']) 
     return model
 
 def summary_model(s_max_len, s_max_features):
@@ -34,16 +36,18 @@ def summary_model(s_max_len, s_max_features):
                      input_length=s_max_len)(summary_input)
     summary_lstm_sub = LSTM(32, dropout = 0.2, recurrent_dropout = 0.2, return_sequences=True)(summary_embedding)
     summary_lstm = LSTM(32, dropout = 0.2, recurrent_dropout = 0.2)(summary_lstm_sub)
-    summary_output = Dense(5, activation='sigmoid', name='summary_output')(summary_lstm)
+    summary_output = Dense(4, activation='sigmoid', name='summary_output')(summary_lstm)
     model = Model(inputs=[summary_input], outputs=[summary_output]) 
-    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics = ['accuracy']) 
+    #loss_weights = {0: 0.2, 1: 0.4, 2: 0.6, 3:0.8, 4:1.0}
+    #adam = Adam(lr=0.01)
+    model.compile(optimizer="adam", loss='binary_crossentropy', metrics = ['accuracy']) 
     return model
 
 def main(argv):
  
     #Read csv data into a dataframe 
     #data = pd.read_csv(argv[1]).sample(10000)
-    data = pd.read_csv(argv[1])[:20000]
+    data = pd.read_csv(argv[1])
     split = round(data.shape[0]*0.8)
     print (split)    
    
@@ -52,7 +56,7 @@ def main(argv):
     t_max_len = 300          #cutoff for length of sequence for text
     s_max_features = 30000   #cutoff for num of most common words for summary
     s_max_len = 50          #cutoff for length of sequence for summary
-    batch_size = 50       
+    batch_size = 500       
 
     #Convert training text to sequence
     t = Tokenizer(num_words=t_max_features)
@@ -75,7 +79,7 @@ def main(argv):
     x_help = pd.concat([x_help, ratio], axis=1).to_numpy()
 
     #Encode the ordinal label for example
-    y = data['Score'].apply(lambda x: [1]*x + [0]*(5-x))
+    y = data['Score'].apply(lambda x: [1]*(x-1) + [0]*(5-x))
     y = np.asarray(list(y))
     y_label = (data['Score']-1).to_numpy()
 
@@ -85,10 +89,14 @@ def main(argv):
     t_model.fit(x_text[:split],y[:split],epochs=1, batch_size=batch_size) 
     s_model.fit(x_summary[:split],y[:split],epochs=1, batch_size=batch_size) 
 
-    #Predict LSTM output for text and summary
     t_output = t_model.predict(x_text)
     s_output = s_model.predict(x_summary)
-    
+    ##Predict LSTM output for text and summary
+    #t_output = t_model.predict(x_text[16000:16050])
+    #s_output = s_model.predict(x_summary[16000:16050])
+    for i in range(50):
+        print (t_output[split:][i], s_output[split:][i], y[split:][i])  
+  
     #Generate input for decision tree
     x_total = np.concatenate([t_output, s_output, x_help], axis=1)   
     d_train = xgb.DMatrix(x_total[:split], label=y_label[:split])

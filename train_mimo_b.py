@@ -39,7 +39,7 @@ def modelGen(t_max_len, s_max_len, t_max_features, s_max_features):
 
     #adam = Adam(lr=0.01)
     model.compile(optimizer="adam", loss='binary_crossentropy', 
-                  metrics = ['accuracy']) 
+                  metrics = ['binary_accuracy']) 
     
     return model
 
@@ -47,7 +47,7 @@ def main(argv):
  
     #Read csv data into a dataframe 
     #data = pd.read_csv(argv[1]).sample(10000)
-    data = pd.read_csv(argv[1])[:20000]
+    data = pd.read_csv(argv[1]).sample(frac=1)
     split = round(data.shape[0]*0.8)
     print (split)    
    
@@ -56,7 +56,7 @@ def main(argv):
     t_max_len = 300          #cutoff for length of sequence for text
     s_max_features = 30000   #cutoff for num of most common words for summary
     s_max_len = 50          #cutoff for length of sequence for summary
-    batch_size = 50       
+    batch_size = 500       
 
     #Convert training text to sequence
     t = Tokenizer(num_words=t_max_features)
@@ -79,28 +79,26 @@ def main(argv):
     x_help = pd.concat([x_help, ratio], axis=1).to_numpy()
 
     #Encode the ordinal label for example
-    y = data['Score'].apply(lambda x: int(x >= 3)).to_numpy()
-   
-    model = modelGen(t_max_len, s_max_len, t_max_features, t_max_features) 
-    model.fit([x_text[:split],x_summary[:split], x_help[:split]], [y[:split], y[:split], y[:split]], epochs=2, batch_size=batch_size,
-              validation_data=([x_text[split:],x_summary[split:], x_help[split:]], [y[split:], y[split:], y[split:]]))
+    y = data['Score'].apply(lambda x: int(x >= 4)).to_numpy()
      
-    output = model.predict([x_text[split:],x_summary[split:], x_help[split:]])
-    for i in range(20):
-        print (output[0][i], output[1][i], output[2][i], y_one_hot[i])
-    #count = 0
-    #for i in range(1000):
-    #    pred = output[0][i].round()
-    #    true = y[split:][i]
-    #    #print (pred)
-    #    #print (true)
-    #    a = 0
-    #    for j in range(5):
-    #        if pred[j] == true[j]:
-    #            a += 1
-    #    if a == 5:
-    #        count += 1
-    #print (count)
+    model = modelGen(t_max_len, s_max_len, t_max_features, t_max_features) 
+    hist = model.fit([x_text[:split],x_summary[:split], x_help[:split]], [y[:split], y[:split], y[:split]], epochs=10, batch_size=batch_size,
+              validation_data=([x_text[split:],x_summary[split:], x_help[split:]], [y[split:], y[split:], y[split:]]))
+    hist = hist.history
+    with open("history.txt","w") as history: 
+        for key in hist.keys():
+            history.write("%s   " %key)
+        history.write("\n")
+        for i in range(10):
+            for value in hist.values():
+                history.write("%.12f   " %value[i])
+            history.write("\n")
+    
+    output = model.predict([x_text[:split],x_summary[:split], x_help[:split]])
+    with open("prediction.txt","w") as prediction: 
+        for i in range(data.shape[0]-split):
+             prediction.write("%f    %f    %f    %d\n" %(output[0][i], output[1][i], output[2][i],y[split:][i])) 
+ 
  
 if __name__ == "__main__":
     #np.random.seed(0)

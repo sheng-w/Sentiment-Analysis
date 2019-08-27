@@ -13,39 +13,45 @@ from tensorflow.keras.preprocessing.text import text_to_word_sequence
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.models import Model
 from tensorflow.keras import backend as K
+from tensorflow.keras.optimizers import Adam
 from sklearn.model_selection import StratifiedKFold
 from sklearn.model_selection import KFold
 
-def modelGen(t_max_len, t_max_features, s_max_len, s_max_features):
+def modelGen(t_max_len, s_max_len, t_max_features, s_max_features):
     text_input = Input(shape=(t_max_len,), name='text_input')
     text_embedding = Embedding(output_dim=200, input_dim=t_max_features, 
                      input_length=t_max_len)(text_input)
     text_lstm = lstm_out = LSTM(64, dropout = 0.2, recurrent_dropout = 0.2)(text_embedding)
-    text_output = Dense(5, activation='sigmoid', name='text_output')(text_lstm)
+    #text_lstm_sub = LSTM(64, dropout = 0.2, recurrent_dropout = 0.2, return_sequences=True)(text_embedding)
+    #text_lstm = LSTM(64, dropout = 0.2, recurrent_dropout = 0.2)(text_lstm_sub)
+    text_output = Dense(1, activation='sigmoid', name='text_output')(text_lstm)
     
     summary_input = Input(shape=(s_max_len,), name='summary_input')
     summary_embedding = Embedding(output_dim=100, input_dim=s_max_features, 
                      input_length=t_max_len)(summary_input)
     summary_lstm = lstm_out = LSTM(32, dropout = 0.2, recurrent_dropout = 0.2)(summary_embedding)
-    summary_output = Dense(5, activation='sigmoid', name='summary_output')(summary_lstm)
+    #summary_lstm_sub = LSTM(32, dropout = 0.2, recurrent_dropout = 0.2, return_sequences=True)(summary_embedding)
+    #summary_lstm = LSTM(32, dropout = 0.2, recurrent_dropout = 0.2)(summary_lstm_sub)
+    summary_output = Dense(1, activation='sigmoid', name='summary_output')(summary_lstm)
 
     help_input = Input(shape=(3,), name='help_input')
 
     main_input = concatenate([text_lstm, summary_lstm, help_input])
-    main_output = Dense(5, activation='softmax', name='main_output')(main_input) 
+    main_output = Dense(1, activation='sigmoid', name='main_output')(main_input) 
  
     model = Model(inputs=[text_input, summary_input, help_input], outputs=[main_output, text_output, summary_output]) 
 
-    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics = ['categorical_accuracy']) 
+    #adam = Adam(lr=0.01)
+    model.compile(optimizer="adam", loss='binary_crossentropy', 
+                  metrics = ['binary_accuracy']) 
+    
     return model
 
 def main(argv):
  
     #Read csv data into a dataframe 
     #data = pd.read_csv(argv[1]).sample(10000)
-    data = pd.read_csv(argv[1])
-    split = round(data.shape[0]*0.8)
-    print (split)    
+    data = pd.read_csv(argv[1]).sample(n=100000, replace=False)
    
     #Set up the training parameters
     t_max_features = 30000   #cutoff for num of most common words for text
@@ -75,19 +81,34 @@ def main(argv):
     x_help = pd.concat([x_help, ratio], axis=1).to_numpy()
 
     #Encode the ordinal label for example
-    y = data['Score'].apply(lambda x: [1]*x + [0]*(5-x))
-    y = np.asarray(list(y))
-    y_one_hot = to_categorical(data['Score']-1, num_classes=5) 
-    #print (type(y), y.shape)
+    y = data['Score'].apply(lambda x: int(x >= 4)).to_numpy()
    
-    model = modelGen(t_max_len, t_max_features, s_max_len, s_max_features)
-    model.fit([x_text[:split],x_summary[:split], x_help[:split]], [y_one_hot[:split], y[:split], y[:split]], epochs=1, batch_size=batch_size,
-              validation_data=([x_text[split:],x_summary[split:], x_help[split:]], [y_one_hot[split:], y[split:], y[split:]]))
+    #define 5-fold cross validation test harness
+    kfold = KFold(n_splits=5, shuffle=True, random_state=np.random.seed())
+    cvscores = [[] for x in range(6)]
+    for train, test in kfold.split(x_text,y):
+        model = modelGen(t_max_len, s_max_len, t_max_features, t_max_features) 
+        model.fit([x_text[train],x_summary[train], x_help[train]], [y[train], y[train], y[train]], epochs=2, batch_size=batch_size,
+              validation_data=([x_text[test],x_summary[test], x_help[test]], [y[test], y[test], y[test]]))
+
+        #Evaluate the model
+        score = model.evaluate([x_text[test], x_summary[test], x_help[test]],[y[test], y[test], y[test]], batch_size=batch_size)
+        #print("%s: %.2f%% %.2f%% %.2f%%" % ("accuracy", score[-3]*100, score[-2]*100, score[-1]*100))
+        cvscores[0].append(score[-6] * 100)
+        cvscores[1].append(score[-5] * 100)
+        cvscores[2].append(score[-4] * 100)
+        cvscores[3].append(score[-3] * 100)
+        cvscores[4].append(score[-2] * 100)
+        cvscores[5].append(score[-1] * 100)
+    print("main train output %.2f%% (+/- %.2f%%)" % (np.mean(cvscores[0]), np.std(cvscores[0])))
+    print("text train output %.2f%% (+/- %.2f%%)" % (np.mean(cvscores[1]), np.std(cvscores[1])))
+    print("summary train output %.2f%% (+/- %.2f%%)" % (np.mean(cvscores[2]), np.std(cvscores[2])))
+    print("main cross validation output %.2f%% (+/- %.2f%%)" % (np.mean(cvscores[3]), np.std(cvscores[3])))
+    print("text cross validation output %.2f%% (+/- %.2f%%)" % (np.mean(cvscores[4]), np.std(cvscores[4])))
+    print("summary cross validation output %.2f%% (+/- %.2f%%)" % (np.mean(cvscores[5]), np.std(cvscores[5])))
      
-    output = model.predict([x_text[split:split+20],x_summary[split:split+20], x_help[split:split+20]])
-    for i in range(20):
-        print (output[0][i], output[1][i], output[2][i], y_one_hot[split+i])
  
 if __name__ == "__main__":
     #np.random.seed(0)
     main(argv)
+
