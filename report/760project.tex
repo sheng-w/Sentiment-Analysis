@@ -173,7 +173,7 @@ But summary and reviews are not ready to be fed to the model directly, to struct
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.9\columnwidth]{report/plot_rating.pdf}
+\includegraphics[width=0.9\columnwidth]{plot_rating.pdf}
 \caption{Distribution of Ratings}
 \label{Dstribution of Ratings.}
 \end{figure}
@@ -186,7 +186,7 @@ We built a model based on user review, brief summary of the review and the infor
 
 \begin{figure}[!h]
 \centering
-\includegraphics[height=6cm,width=1.0\columnwidth]{report/pics/structure_plot_2.png}
+\includegraphics[height=6cm,width=1.0\columnwidth]{pics/structure_plot_2.png}
 \caption{Structure Diagram of the Neural Net.}
 \label{model}
 \end{figure}
@@ -202,7 +202,7 @@ Most hyperparameters of the model are selected from detailed feature analysis an
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.9\columnwidth]{report/pics/pr_batch.png}
+\includegraphics[width=0.9\columnwidth]{pics/pr_batch.png}
 \caption{Batch Size vs Cost for Training Each Instance.}
 \label{batch_size}
 \end{figure}
@@ -211,7 +211,7 @@ Most hyperparameters of the model are selected from detailed feature analysis an
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=1.0\columnwidth]{report/plot_acc.pdf}
+\includegraphics[width=1.0\columnwidth]{plot_acc.pdf}
 \caption{Prediction Accuracy of Two Candidate Models. We compare the prediction accuracy for 1-layer-LSTM model and 2-layer-LSTM model, and we measure the differences based on three kinds of output: main output, output only from Review, and output only from Summary. }
 \label{predAcc}
 \end{figure}
@@ -219,7 +219,7 @@ Most hyperparameters of the model are selected from detailed feature analysis an
 
 \begin{figure}[!h]
 \centering
-\includegraphics[height=7cm,width=0.9\columnwidth]{report/train_val_main.pdf}  
+\includegraphics[height=7cm,width=0.9\columnwidth]{train_val_main.pdf}  
 \caption{Validation and Train Accuracy for Main. The orange line represents train accuracy, and the blue line denotes the validation accuracy.}
 \label{epochs}
 \end{figure}
@@ -246,7 +246,7 @@ We first look at the accuracy of the three models on the test set shown in Fig.\
 
 \begin{figure}[!h]
 \centering
-\includegraphics[height=6cm,width=0.9\columnwidth]{report/plot_val_acc.pdf}  
+\includegraphics[height=6cm,width=0.9\columnwidth]{plot_val_acc.pdf}  
 \caption{Training Accuracy Plot for Main vs Review vs Summary. We Compare the training accuracy using three different inputs: Main, Review, and Summary. The blue line represents Main output, the orange line denotes Review output, and green line corresponds to Summary output.}
 \label{1}
 \end{figure}
@@ -254,14 +254,14 @@ We first look at the accuracy of the three models on the test set shown in Fig.\
 
 \begin{figure}[!h]
 \centering
-\includegraphics[height=7cm,width=0.9\columnwidth]{report/pr_curve.png}  
+\includegraphics[height=7cm,width=0.9\columnwidth]{pr_curve.png}  
 \caption{Precision/Recall Curve. This curve is based on the Main output.}
 \label{3}
 \end{figure}
 
 Because of the unbalanced nature of this dataset, the accuracy measure can sometimes be misleading. Here we also include a Precision-Recall Curve, which can not only give us the full picture of the performance of the model as the threshold changes, but also are robust to the skewness of classes. From Fig.\ref{3} we can see that the area under this PR curve is close to 1, indicating that our model is well-trained and offer much predictability.
 
-The accuracy of the main output reaches 94\%.  This high accuracy is still informative in spite of the high skewness of the data, because the ratio of the "good" reviews accounts for 78\%, which is much lower than our 94\% accuracy (which means that the a "naive" classifier that classifies all data points as positive can only reach a 78\% accuracy）.
+The accuracy of the main output reaches $94\%$.  This high accuracy is still informative in spite of the high skewness of the data, because the ratio of the "good" reviews accounts for $78\%$, which is much lower than our $94\%$ accuracy (which means that the a "naive" classifier that classifies all data points as positive can only reach a $78\%$ accuracy).
 
 It is also worth mentioning that our method is efficient when working with this huge dataset($568,454$ reviews) containing sequence data and dealing with the natural language processing problem. The entire process to train all the five epochs takes only 32 minutes using current available GPUs.   
 

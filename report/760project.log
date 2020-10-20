@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  5 MAY 2019 22:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  14 MAY 2019 04:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -62,38 +62,54 @@ File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
 )
+(/usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen105
+\captionmargin@=\dimen106
+\captionwidth=\dimen107
+\caption@tempdima=\dimen108
+\caption@indent=\dimen109
+\caption@parindent=\dimen110
+\caption@hangindent=\dimen111
+)
+\c@ContinuedFloat=\count88
+)
 (./760project.aux)
 \openout1 = `760project.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 94.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 95.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 (/usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count88
-\scratchdimen=\dimen105
+\scratchcounter=\count89
+\scratchdimen=\dimen112
 \scratchbox=\box26
-\nofMPsegments=\count89
-\nofMParguments=\count90
+\nofMPsegments=\count90
+\nofMParguments=\count91
 \everyMPshowfont=\toks15
-\MPscratchCnt=\count91
-\MPscratchDim=\dimen106
-\MPnumerator=\count92
-\makeMPintoPDFobject=\count93
+\MPscratchCnt=\count92
+\MPscratchDim=\dimen113
+\MPnumerator=\count93
+\makeMPintoPDFobject=\count94
 \everyMPtoPDFconversion=\toks16
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -151,65 +167,151 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 96.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 97.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 96.
+(Font)              <7> on input line 97.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 96.
+(Font)              <5> on input line 97.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 96.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 97.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 96.
+(Font)              <12> on input line 97.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 96.
+(Font)              <8> on input line 97.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 96.
+(Font)              <6> on input line 97.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 96.
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 96.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 97.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 97.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 96.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 97.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 98.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 99.
 <pics//plot_t_len.pdf, id=1, 505.89pt x 505.89pt>
 File: pics//plot_t_len.pdf Graphic file (type pdf)
 <use pics//plot_t_len.pdf>
-Package pdftex.def Info: pics//plot_t_len.pdf  used on input line 139.
-(pdftex.def)             Requested size: 215.45348pt x 215.45197pt.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 148.
+Package pdftex.def Info: pics//plot_t_len.pdf  used on input line 146.
+(pdftex.def)             Requested size: 215.45197pt x 199.17207pt.
 
-No file 760project.bbl.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<pics//plot_r_len.pdf, id=2, 505.89pt x 505.89pt>
+File: pics//plot_r_len.pdf Graphic file (type pdf)
+<use pics//plot_r_len.pdf>
+Package pdftex.def Info: pics//plot_r_len.pdf  used on input line 153.
+(pdftex.def)             Requested size: 215.45197pt x 199.17207pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<pics//plot_t_freq.pdf, id=3, 505.89pt x 505.89pt>
+File: pics//plot_t_freq.pdf Graphic file (type pdf)
+<use pics//plot_t_freq.pdf>
+Package pdftex.def Info: pics//plot_t_freq.pdf  used on input line 160.
+(pdftex.def)             Requested size: 215.45197pt x 199.17207pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<pics//plot_r_freq.pdf, id=4, 505.89pt x 505.89pt>
+File: pics//plot_r_freq.pdf Graphic file (type pdf)
+<use pics//plot_r_freq.pdf>
+Package pdftex.def Info: pics//plot_r_freq.pdf  used on input line 167.
+(pdftex.def)             Requested size: 215.45197pt x 199.17207pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<plot_rating.pdf, id=5, 433.62pt x 259.97125pt>
+File: plot_rating.pdf Graphic file (type pdf)
+<use plot_rating.pdf>
+Package pdftex.def Info: plot_rating.pdf  used on input line 176.
+(pdftex.def)             Requested size: 215.45348pt x 129.1721pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 [1{/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 
- <./pics//plot_t_len.pdf>] (./760project.aux)
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+ [2 <./pics//plot_t_len.pdf> <./pics//plot_r_len.pdf> <./pics//plot_t_freq.pdf>
+ <./pics//plot_r_freq.pdf>]
+<pics/structure_plot_2.png, id=39, 828.09375pt x 439.6425pt>
+File: pics/structure_plot_2.png Graphic file (type png)
+<use pics/structure_plot_2.png>
+Package pdftex.def Info: pics/structure_plot_2.png  used on input line 189.
+(pdftex.def)             Requested size: 239.39554pt x 170.71524pt.
+<pics/pr_batch.png, id=41, 412.6617pt x 323.7696pt>
+File: pics/pr_batch.png Graphic file (type png)
+<use pics/pr_batch.png>
+Package pdftex.def Info: pics/pr_batch.png  used on input line 205.
+(pdftex.def)             Requested size: 215.45348pt x 169.04292pt.
+<plot_acc.pdf, id=42, 578.16pt x 346.29375pt>
+File: plot_acc.pdf Graphic file (type pdf)
+<use plot_acc.pdf>
+Package pdftex.def Info: plot_acc.pdf  used on input line 214.
+(pdftex.def)             Requested size: 239.39438pt x 143.38689pt.
 
- ) 
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<train_val_main.pdf, id=43, 414.8668pt x 322.35693pt>
+File: train_val_main.pdf Graphic file (type pdf)
+<use train_val_main.pdf>
+Package pdftex.def Info: train_val_main.pdf  used on input line 222.
+(pdftex.def)             Requested size: 215.45343pt x 199.17552pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[3 <./plot_rating.pdf> <./pics/structure_plot_2.png> <./pics/pr_batch.png>]
+<plot_val_acc.pdf, id=54, 433.62pt x 259.97125pt>
+File: plot_val_acc.pdf Graphic file (type pdf)
+<use plot_val_acc.pdf>
+Package pdftex.def Info: plot_val_acc.pdf  used on input line 249.
+(pdftex.def)             Requested size: 215.45308pt x 170.71678pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<pr_curve.png, id=55, 420.6114pt x 323.7696pt>
+File: pr_curve.png Graphic file (type png)
+<use pr_curve.png>
+Package pdftex.def Info: pr_curve.png  used on input line 257.
+(pdftex.def)             Requested size: 215.45242pt x 199.16899pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[4 <./plot_acc.pdf> <./train_val_main.pdf> <./plot_val_acc.pdf> <./pr_curve.png
+>] [5
+
+] (./760project.aux) ) 
 Here is how much of TeX's memory you used:
- 1639 strings out of 492649
- 23674 string characters out of 6129622
- 90503 words of memory out of 5000000
- 5500 multiletter control sequences out of 15000+600000
- 21515 words of font info for 44 fonts, out of 8000000 for 9000
+ 2766 strings out of 492649
+ 44359 string characters out of 6129622
+ 114582 words of memory out of 5000000
+ 6611 multiletter control sequences out of 15000+600000
+ 19382 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,13n,25p,656b,279s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/tex
-live/2018/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2018/
-texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on 760project.pdf (1 page, 45058 bytes).
+ 41i,13n,39p,1144b,281s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/base/
+8r.enc}</usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi1
+0.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.
+pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.p
+fb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb
+></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/loc
+al/texlive/2018/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
+Output written on 760project.pdf (5 pages, 260655 bytes).
 PDF statistics:
- 27 PDF objects out of 1000 (max. 8388607)
- 18 compressed objects within 1 object stream
+ 141 PDF objects out of 1000 (max. 8388607)
+ 66 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 
